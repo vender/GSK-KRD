@@ -1,6 +1,6 @@
 import * as React from "react";
 import RichTextInput from 'ra-input-rich-text';
-import { Datagrid, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, NumberInput, TextInput, ShowButton, EditButton, DateInput, } from "react-admin";
+import { Datagrid, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton, DateInput, } from "react-admin";
 
 const UserFilter = (props) => (
   <Filter {...props}>
@@ -30,6 +30,7 @@ export const UserShow = (props) => (
       <TextField source="data" fullWidth="true" label="Дата и номер регистрации права собственности" />
       <TextField source="boxnum" label="Номер бокса (гаража)" />
       <TextField source="moneydate" label="Дата последнего взноса" />
+      <TextField source="member" label="Член ГСК с" />
       <TextField source="dolg" label="Сумма долга" />
       <TextField source="about" multiline="true" label="Заметка" />
     </SimpleShowLayout>
@@ -39,13 +40,14 @@ export const UserShow = (props) => (
 export const UserCreate = (props) => (
   <Create {...props} >
     <SimpleForm>
-      <TextInput source="name" label="Ф.И.О" />
+      <TextInput source="name" fullWidth="true" label="Ф.И.О" />
       <TextInput source="phone" label="Номер телефона" />
-      <TextInput source="adress" label="Адрес" />
-      <NumberInput source="dolya" label="Доля земельного участка" />
+      <TextInput source="adress" fullWidth="true" label="Адрес" />
+      <TextInput source="dolya" label="Доля земельного участка" />
       <TextInput source="data" fullWidth="true" label="Дата и номер регистрации права собственности" />
       <TextInput source="boxnum" label="Номер бокса (гаража)" />
       <DateInput source="moneydate" label="Дата последнего взноса" />
+      <DateInput source="member" label="Член ГСК с" />
       <TextInput source="dolg" label="Сумма долга" />
       <RichTextInput source="about" multiline="true" label="Заметка" />
     </SimpleForm>
@@ -55,13 +57,14 @@ export const UserCreate = (props) => (
 export const UserEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
-      <TextInput source="name" label="Ф.И.О" />
+      <TextInput source="name" fullWidth="true" label="Ф.И.О" />
       <TextInput source="phone" label="Номер телефона" />
-      <TextInput source="adress" label="Адрес" />
-      <NumberInput source="dolya" label="Доля земельного участка" />
+      <TextInput source="adress" fullWidth="true" label="Адрес" />
+      <TextInput source="dolya" label="Доля земельного участка" />
       <TextInput source="data" fullWidth="true" label="Дата и номер регистрации права собственности" />
       <TextInput source="boxnum" label="Номер бокса (гаража)" />
       <DateInput source="moneydate" label="Дата последнего взноса" />
+      <DateInput source="member" label="Член ГСК с" />
       <TextInput source="dolg" label="Сумма долга" />
       <RichTextInput source="about" multiline="true" label="Заметка" />
     </SimpleForm>

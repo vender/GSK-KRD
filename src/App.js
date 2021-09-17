@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Admin, Resource } from 'react-admin';
 import { UserList, UserShow, UserCreate, UserEdit } from './components/users';
+import { GarajList, GarajShow, GarajCreate, GarajEdit } from './components/garaji';
 import UserIcon from '@material-ui/icons/People';
+import HomeIcon from '@material-ui/icons/Home';
 import { FirebaseAuthProvider, FirebaseDataProvider } from 'react-admin-firebase';
 import Dashboard from './components/Dashboard';
 import polyglotI18nProvider from 'ra-i18n-polyglot';
@@ -28,6 +30,7 @@ const authProvider = FirebaseAuthProvider(firebaseConfig, options);
 const App = () => (
     <Admin dashboard={Dashboard} title="My Custom Admin" dataProvider={dataProvider} authProvider={authProvider} i18nProvider={i18nProvider} >
         <Resource name="users" options={{ label: 'Владельцы' }} icon={UserIcon} list={UserList} show={UserShow} create={UserCreate} edit={UserEdit} />
+        <Resource name="garaji" options={{ label: 'Гаражи' }} icon={HomeIcon} list={GarajList} show={GarajShow} create={GarajCreate} edit={GarajEdit} />
     </Admin>
 );
 
