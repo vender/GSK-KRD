@@ -3,14 +3,14 @@ import { Datagrid, ReferenceInput, ReferenceField, AutocompleteInput, List, Show
 
 const GarajFilter = (props) => (
   <Filter {...props}>
-    <TextInput label="Поиск" source="name" alwaysOn />
+    <TextInput label="Поиск по номеру" source="number" alwaysOn />
   </Filter>
 );
 
 export const GarajList = (props) => (
   <List {...props} filters={<GarajFilter />}>
     <Datagrid>
-      <ReferenceField label="Владелец" source="user.id" reference="users">
+      <ReferenceField label="Владелец" source="id" reference="users">
         <TextField source="name" />
       </ReferenceField>
       <TextField source="number" label="Номер" />
@@ -24,7 +24,7 @@ export const GarajList = (props) => (
 export const GarajShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
-      <ReferenceField label="Владелец" source="user.id" reference="users">
+      <ReferenceField label="Владелец" source="id" reference="users">
         <TextField source="name" />
       </ReferenceField>
       <TextField source="number" label="Номер" />
@@ -36,7 +36,7 @@ export const GarajShow = (props) => (
 export const GarajCreate = (props) => (
   <Create {...props} >
     <SimpleForm>
-      <ReferenceInput label="Владелец" source="user.id" reference="users">
+      <ReferenceInput label="Владелец" source="id" reference="users">
         <AutocompleteInput optionText="name" translateChoice={false} />
       </ReferenceInput>
       <TextInput source="number" label="Номер" />
@@ -48,7 +48,7 @@ export const GarajCreate = (props) => (
 export const GarajEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
-      <ReferenceInput label="Владелец" source="user.id" reference="users">
+      <ReferenceInput label="Владелец" source="id" reference="users">
         <AutocompleteInput optionText="name" translateChoice={false} />
       </ReferenceInput>
       <TextInput source="number" label="Номер" />
