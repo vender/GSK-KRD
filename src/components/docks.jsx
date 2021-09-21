@@ -10,7 +10,7 @@ const DockFilter = (props) => (
 export const DockList = (props) => (
   <List {...props} filters={<DockFilter />}>
     <Datagrid>
-      <TextField source="name" />
+      <TextField source="name" label="Название" />
       <ShowButton label="" />
       <EditButton label="" />
     </Datagrid>
@@ -32,7 +32,7 @@ export const DockCreate = (props) => (
       <FileInput source="files" label="Документ">
         <FileField source="src" title="title" />
       </FileInput>
-      <TextInput source="name" fullWidth="true" label="Название файла" />
+      <TextInput source="name" fullWidth={true} label="Название файла" />
     </SimpleForm>
   </Create>
 );
@@ -43,7 +43,7 @@ export const DockEdit = (props) => (
       <FileInput source="files" label="Документ">
         <FileField source="src" title="title" />
       </FileInput>
-      <TextInput source="name" fullWidth="true" label="Название файла" />
+      <TextInput source="name" fullWidth={true} label="Название файла" />
     </SimpleForm>
   </Edit>
 );

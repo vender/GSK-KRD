@@ -32,11 +32,33 @@ const dataFilesProvider = {
         return dataProvider.delete(resource, {
             id: id
         });
-    }
+    },
+    deleteMany: async (resource, { ids }) => {
+        const { data, err } = await supabase
+        .from(resource)
+        .select()
+        .in('id', ids);
+
+        if (err) {
+            throw err;
+        }
+
+
+        data.map(fileUrl => removeFile(fileUrl));
+
+        const { data: records, error } = await supabase
+            .from(resource)
+            .delete()
+            .in('id', ids);
+
+        if (error) {
+            throw error;
+        }
+        return { data: records?.map(record => record.id) };
+    },
 };
 
 const uploadFile = async (file) => {
-    console.log(file);
     const { data, error } = await supabase
     .storage
     .from('user-data')

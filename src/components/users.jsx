@@ -7,7 +7,7 @@ const postFilters = [
 ];
 
 export const UserList = (props) => (
-  <List {...props} filters={postFilters}>
+  <List {...props} sort={{ field: 'name', order: 'ASC' }} filters={postFilters}>
     <Datagrid>
       <TextField source="name" label="Ф.И.О" />
       <TextField source="member" label="Член ГСК с" sortable={false} />
@@ -25,7 +25,7 @@ export const UserShow = (props) => (
       <TextField source="phone" label="Номер телефона" />
       <TextField source="adress" label="Адрес регистрации по месту жительства (пребывания)" />
       <TextField source="dolya" label="Доля земельного участка" />
-      <TextField source="data" fullWidth="true" label="Дата и номер регистрации права собственности" />
+      <TextField source="data" label="Дата и номер регистрации права собственности" />
       <TextField source="boxnum" label="Номер бокса (гаража)" />
       <TextField source="moneydate" label="Дата последнего взноса" />
       <TextField source="member" label="Член ГСК с" />
@@ -38,11 +38,11 @@ export const UserShow = (props) => (
 export const UserCreate = (props) => (
   <Create {...props} >
     <SimpleForm>
-      <TextInput source="name" fullWidth="true" label="Ф.И.О" />
+      <TextInput source="name" fullWidth={true} label="Ф.И.О" />
       <TextInput source="phone" label="Номер телефона" />
-      <TextInput source="adress" fullWidth="true" label="Адрес регистрации по месту жительства (пребывания)" />
+      <TextInput source="adress" fullWidth={true} label="Адрес регистрации по месту жительства (пребывания)" />
       <TextInput source="dolya" label="Доля земельного участка" />
-      <TextInput source="data" fullWidth="true" label="Дата и номер регистрации права собственности" />
+      <TextInput source="data" fullWidth={true} label="Дата и номер регистрации права собственности" />
       <TextInput source="boxnum" label="Номер бокса (гаража)" />
       <DateInput source="moneydate" label="Дата последнего взноса" />
       <DateInput source="member" label="Член ГСК с" />
@@ -55,11 +55,11 @@ export const UserCreate = (props) => (
 export const UserEdit = (props) => (
   <Edit {...props}>
     <SimpleForm>
-      <TextInput source="name" fullWidth="true" label="Ф.И.О" />
+      <TextInput source="name" fullWidth={true} label="Ф.И.О" />
       <TextInput source="phone" label="Номер телефона" />
-      <TextInput source="adress" fullWidth="true" label="Адрес регистрации по месту жительства (пребывания)" />
+      <TextInput source="adress" fullWidth={true} label="Адрес регистрации по месту жительства (пребывания)" />
       <TextInput source="dolya" label="Доля земельного участка" />
-      <TextInput source="data" fullWidth="true" label="Дата и номер регистрации права собственности" />
+      <TextInput source="data" fullWidth={true} label="Дата и номер регистрации права собственности" />
       <TextInput source="boxnum" label="Номер бокса (гаража)" />
       <DateInput source="moneydate" label="Дата последнего взноса" />
       <DateInput source="member" label="Член ГСК с" />
