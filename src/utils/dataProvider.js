@@ -4,7 +4,7 @@ import { supabase } from './supabase';
 const resources = {
     users: {
         fields: ['id', 'name', 'phone', 'adress', 'dolya', 'data', 'boxnum', 'moneydate', 'member', 'dolg', 'about'],
-        fullTextSearchFields: ['name'],
+        fullTextSearchFields: ['name', 'id'],
     },
     garaji: ['id', 'number', 'square', 'user', 'created_at', 'updated_at'],
     docks: ['id', 'files', 'src', 'name', 'fullurl', 'created_at', 'updated_at'],

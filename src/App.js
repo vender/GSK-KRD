@@ -11,11 +11,9 @@ import Dashboard from './components/Dashboard';
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import russianMessages from 'ra-language-russian';
 // import { authRoutes } from 'ra-supabase';
-// import { dataProvider } from './utils/dataProvider';
 import dataFilesProvider from './utils/dataFilesProvider';
 import { authProvider } from './utils/authProvider';
 import SignIn from './components/Login';
-
 import customRoutes from './components/customRoutes';
 
 dotenv.config();

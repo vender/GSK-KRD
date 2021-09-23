@@ -43,8 +43,10 @@ const dataFilesProvider = {
             throw err;
         }
 
-
-        data.map(fileUrl => removeFile(fileUrl));
+        data.map(fileUrl => {
+            if(fileUrl.src) return removeFile(fileUrl)
+            return null
+        });
 
         const { data: records, error } = await supabase
             .from(resource)

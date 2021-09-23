@@ -1,10 +1,5 @@
-import * as React from "react";
-import { Datagrid, ReferenceField, AutocompleteInput, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton } from "react-admin";
-import { dataProvider } from '../utils/dataProvider';
-
-let usersList = '';
-dataProvider.getList('users', { pagination: { page: 1 , perPage: 10}, sort: { field: 'name', order: 'ASC' }, filter: {q:''}})
-.then(response => usersList = response.data);
+import React from "react";
+import { ReferenceInput, Datagrid, ReferenceField, AutocompleteInput, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton } from "react-admin";
 
 const GarajFilter = (props) => (
   <Filter {...props}>
@@ -38,22 +33,36 @@ export const GarajShow = (props) => (
   </Show>
 );
 
-export const GarajCreate = (props) => (
+export function GarajCreate(props) {
+  // const { data, loading, error } = useQueryWithStore({ 
+  //   type: 'getList',
+  //   resource: 'users',
+  //   payload: { pagination: { page: 1 , perPage: 10}, sort: { field: 'name', order: 'ASC' }, filter: {q:''}}
+  // });
+
+  return (
   <Create {...props} >
     <SimpleForm>
-      <AutocompleteInput label="Владелец" optionText="name" source="user" choices={usersList} translateChoice={false} />
+      <ReferenceInput label="Владелец" source="user" reference="users" sort={{ field: 'name', order: 'ASC' }}>
+        <AutocompleteInput optionText="name" />
+      </ReferenceInput>
       <TextInput source="number" label="Номер" />
       <TextInput source="square" label="Площадь" />
     </SimpleForm>
   </Create>
-);
+  )
+};
 
-export const GarajEdit = (props) => (
+export function GarajEdit(props) {
+  return(
   <Edit {...props}>
     <SimpleForm>
-      <AutocompleteInput label="Владелец" optionText="name" source="user" choices={usersList} translateChoice={false} />
+      <ReferenceInput label="Владелец" source="user" reference="users">
+        <AutocompleteInput optionText="name" />
+      </ReferenceInput>
       <TextInput source="number" label="Номер" />
       <TextInput source="square" label="Площадь" />
     </SimpleForm>
   </Edit>
-);
+  )
+};

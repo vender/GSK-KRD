@@ -1,8 +1,11 @@
 import { supabaseAuthProvider } from 'ra-supabase';
 import { supabase } from './supabase';
 
+// console.log(supabase.auth.user());
+
 export const authProvider = supabaseAuthProvider(supabase, {
     getIdentity: async (user) => {
+        
         const { data, error } = await supabase
             .from('profiles')
             .select('id, email, fio')
