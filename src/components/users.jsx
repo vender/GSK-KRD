@@ -1,19 +1,26 @@
-import * as React from "react";
+import React, {Fragment} from "react";
 import RichTextInput from 'ra-input-rich-text';
-import { Datagrid, SearchInput, List, Show, Create, Edit, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton, DateInput, } from "react-admin";
+import { Datagrid, BulkDeleteButton, SearchInput, List, Show, Create, Edit, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton, DateInput, } from "react-admin";
 
 const postFilters = [
   <SearchInput source="q" alwaysOn />,
 ];
 
-export const UserList = (props) => (
-  <List {...props} sort={{ field: 'name', order: 'ASC' }} filters={postFilters}>
+const BulkActionButtons = props => (
+  <Fragment>
+      <BulkDeleteButton {...props} />
+  </Fragment>
+);
+
+export const UserList = ({ permissions, ...props }) => (
+  <List {...props} bulkActionButtons={permissions === 'admin' && <BulkActionButtons />} sort={{ field: 'name', order: 'ASC' }} filters={postFilters}>
     <Datagrid>
       <TextField source="name" label="Ф.И.О" />
       <TextField source="member" label="Член ГСК с" sortable={false} />
       <TextField source="dolg" label="Сумма долга" sortable={false} />
       <ShowButton label="" />
-      <EditButton label="" />
+      {permissions === 'admin' &&
+      <EditButton label="" />}
     </Datagrid>
   </List>
 );

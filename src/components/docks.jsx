@@ -1,5 +1,5 @@
-import * as React from "react";
-import { Datagrid, FileInput, UrlField, FileField, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton } from "react-admin";
+import React, {Fragment} from "react";
+import { Datagrid, FileInput, BulkDeleteButton, UrlField, FileField, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton } from "react-admin";
 
 const DockFilter = (props) => (
   <Filter {...props}>
@@ -7,12 +7,19 @@ const DockFilter = (props) => (
   </Filter>
 );
 
-export const DockList = (props) => (
-  <List {...props} filters={<DockFilter />}>
+const BulkActionButtons = props => (
+  <Fragment>
+      <BulkDeleteButton {...props} />
+  </Fragment>
+);
+
+export const DockList = ({ permissions, ...props }) => (
+  <List {...props} bulkActionButtons={permissions === 'admin' && <BulkActionButtons />} filters={<DockFilter />}>
     <Datagrid>
       <TextField source="name" label="Название" />
       <ShowButton label="" />
-      <EditButton label="" />
+      {permissions === 'admin' &&
+        <EditButton label="" />}
     </Datagrid>
   </List>
 );

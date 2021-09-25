@@ -53,7 +53,7 @@ export default function SignIn() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Вход в ситсему
+          Вход в систему
         </Typography>
         <form className={classes.form} onSubmit={submit}>
           <TextField

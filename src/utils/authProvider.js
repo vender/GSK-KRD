@@ -1,8 +1,6 @@
 import { supabaseAuthProvider } from 'ra-supabase';
 import { supabase } from './supabase';
 
-// console.log(supabase.auth.user());
-
 export const authProvider = supabaseAuthProvider(supabase, {
     getIdentity: async (user) => {
         
