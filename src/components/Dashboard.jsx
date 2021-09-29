@@ -1,7 +1,6 @@
 import * as React from "react";
 import {Container,Grid,Typography,Card,CardContent,makeStyles,Button} from '@material-ui/core';
 import { useQueryWithStore } from 'react-admin';
-// import dataFilesProvider from './utils/dataFilesProvider';
 
 const useStyles = makeStyles({
     root: {
@@ -19,6 +18,7 @@ const useStyles = makeStyles({
       marginBottom: 12,
     },
 });
+let summadolga = 0;
 
 const Dashboard = () => {
     const classes = useStyles();
@@ -47,14 +47,14 @@ const Dashboard = () => {
         resource: 'users',
         payload: { pagination: { page: 1, perPage: 200 }, sort: { field: 'dolg', order: 'ASC' }, filter: {q:'', dolg: 1} }
     });
-    
-    const summadolga = dolgSum.reduce(add,0);
-    function add(accumulator, a) {
-        return accumulator + a.dolg;
+    if (dolgSum) {
+        summadolga = dolgSum.reduce(add,0);
+        function add(accumulator, a) {
+            return accumulator + a.dolg;
+        }
     }
-    
+    console.log(summadolga);
     return(
-    
     <Container maxWidth="lg">
         <Grid container spacing={3}>
             <Grid item xs={12} md={4} lg={4}>
