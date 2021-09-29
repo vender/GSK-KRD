@@ -7,7 +7,7 @@ import { DockList, DockShow, DockCreate, DockEdit } from './components/docks';
 import UserIcon from '@material-ui/icons/People';
 import HomeIcon from '@material-ui/icons/Home';
 import DescriptionIcon from '@material-ui/icons/Description';
-import Dashboard from './components/dashboard/Dashboard';
+import Dashboard from './components/Dashboard';
 import polyglotI18nProvider from 'ra-i18n-polyglot';
 import russianMessages from 'ra-language-russian';
 // import { authRoutes } from 'ra-supabase';
@@ -16,7 +16,7 @@ import dataFilesProvider from './utils/dataFilesProvider';
 import authDataPermisions from './utils/authDataPermisions';
 import SignIn from './components/Login';
 import customRoutes from './components/customRoutes';
-
+// console.log(dataFilesProvider);
 dotenv.config();
 const i18nProvider = polyglotI18nProvider(() => russianMessages, 'ru');
 

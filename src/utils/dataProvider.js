@@ -1,7 +1,7 @@
 import { supabaseDataProvider } from 'ra-supabase';
 import { supabase } from './supabase';
 
-const resources = {
+export const resources = {
     users: {
         fields: ['id', 'name', 'phone', 'adress', 'dolya', 'data', 'boxnum', 'moneydate', 'member', 'dolg', 'about'],
         fullTextSearchFields: ['name', 'id'],

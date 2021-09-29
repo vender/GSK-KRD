@@ -1,8 +1,11 @@
-import { dataProvider } from './dataProvider';
+import { dataProvider, resources } from './dataProvider';
 import { supabase } from './supabase';
 
 const dataFilesProvider = {
     ...dataProvider,
+    getList: async (resource, params) => {
+        return getList({ supabase, resources, resource, params });
+    },
     create: async (resource, params) => {
         if (!params.data.files) {
             return dataProvider.create(resource, params);
@@ -58,6 +61,12 @@ const dataFilesProvider = {
         }
         return { data: records?.map(record => record.id) };
     },
+    // getMembers: async () => {
+    //     const { data, error } = await supabase
+    //     .from('cities')
+    //     .select('name, country_id')
+    //     .not('name', 'eq', 'Paris')
+    // }
 };
 
 const uploadFile = async (file) => {
@@ -83,8 +92,52 @@ const removeFile = async (file) => {
     if(error) {
         throw error
     }
-    // console.log([parts[1]+'/'+parts[2]]);
     return error;
+};
+
+const getList = async ({ supabase, resources, resource, params }) => {
+    const {
+        pagination,
+        sort,
+        filter: { q, ...filter },
+    } = params;
+
+    const resourceOptions = resources[resource];
+    const fields = Array.isArray(resourceOptions)
+        ? resourceOptions
+        : resourceOptions.fields;
+
+    const rangeFrom = (pagination.page - 1) * pagination.perPage;
+    const rangeTo = rangeFrom + pagination.perPage;
+
+    let query = supabase
+        .from(resource)
+        .select(fields.join(', '), { count: 'exact' })
+        .order(sort.field, { ascending: sort.order === 'ASC' })
+        .range(rangeFrom, rangeTo);
+
+    if (Object.keys(filter)[0]) {
+        query.gt(Object.keys(filter)[0], 0)
+    } else {
+        query.match(filter)
+    }
+
+    if (q) {
+        const fullTextSearchFields = Array.isArray(resourceOptions)
+            ? resourceOptions
+            : resourceOptions.fullTextSearchFields;
+
+        query = query.or(
+            fullTextSearchFields.map(field => `${field}.ilike.%${q}%`).join(',')
+        );
+    }
+
+    const { data, error, count } = await query;
+
+    if (error) {
+        throw error;
+    }
+    return { data: data ?? [], total: count ?? 0 };
 };
 
 export default dataFilesProvider;

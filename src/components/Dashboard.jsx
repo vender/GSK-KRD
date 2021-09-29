@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Container,Grid,Typography,Card,CardContent,makeStyles,Button} from '@material-ui/core';
 import { useQueryWithStore } from 'react-admin';
+// import dataFilesProvider from './utils/dataFilesProvider';
 
 const useStyles = makeStyles({
     root: {
@@ -36,8 +37,24 @@ const Dashboard = () => {
         resource: 'docks',
         payload: { pagination: { page: 1, perPage: 1 }, sort: { field: 'id', order: 'ASC' }, filter: {q:''} }
     });
-
+    const { total:member } = useQueryWithStore({ 
+        type: 'getList',
+        resource: 'users',
+        payload: { pagination: { page: 1, perPage: 1 }, sort: { field: 'member', order: 'ASC' }, filter: {q:'', member: 1} }
+    });
+    const { data:dolgSum, total:dolgi } = useQueryWithStore({ 
+        type: 'getList',
+        resource: 'users',
+        payload: { pagination: { page: 1, perPage: 200 }, sort: { field: 'dolg', order: 'ASC' }, filter: {q:'', dolg: 1} }
+    });
+    
+    const summadolga = dolgSum.reduce(add,0);
+    function add(accumulator, a) {
+        return accumulator + a.dolg;
+    }
+    
     return(
+    
     <Container maxWidth="lg">
         <Grid container spacing={3}>
             <Grid item xs={12} md={4} lg={4}>
@@ -67,6 +84,35 @@ const Dashboard = () => {
                             Документов - {docks}
                         </Typography>
                         <Button variant="contained" href="#/docks" color="primary">Открыть</Button>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12} md={4} lg={4}>
+                <Card className={classes.root} variant="outlined">
+                    <CardContent>
+                        <Typography variant="h5" gutterBottom>
+                            Членов ГСК - {member}
+                        </Typography>
+                        <Button variant="contained" href='#/users?displayedFilters=%7B"member"%3Atrue%7D&filter=%7B"member"%3A1%7D&order=ASC&page=1&perPage=10&sort=dolg' color="primary">Открыть</Button>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12} md={4} lg={4}>
+                <Card className={classes.root} variant="outlined">
+                    <CardContent>
+                        <Typography variant="h5" gutterBottom>
+                            Должников - {dolgi}
+                        </Typography>
+                        <Button variant="contained" href='#/users?displayedFilters=%7B"dolg"%3Atrue%7D&filter=%7B"dolg"%3A1%7D&order=ASC&page=1&perPage=10&sort=dolg' color="primary">Открыть</Button>
+                    </CardContent>
+                </Card>
+            </Grid>
+            <Grid item xs={12} md={4} lg={4}>
+                <Card className={classes.root} variant="outlined">
+                    <CardContent>
+                        <Typography variant="h5" gutterBottom>
+                            Сумма долга - {summadolga}
+                        </Typography>
                     </CardContent>
                 </Card>
             </Grid>

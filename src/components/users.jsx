@@ -1,9 +1,22 @@
 import React, {Fragment} from "react";
 import RichTextInput from 'ra-input-rich-text';
+import { makeStyles, Chip } from '@material-ui/core';
 import { Datagrid, BulkDeleteButton, SearchInput, List, Show, Create, Edit, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton, DateInput, } from "react-admin";
+
+const useQuickFilterStyles = makeStyles(theme => ({
+  chip: {
+      marginBottom: theme.spacing(1),
+  },
+}));
+const QuickFilter = ({ label }) => {
+  const classes = useQuickFilterStyles();
+  return <Chip className={classes.chip} label={label} />;
+};
 
 const postFilters = [
   <SearchInput source="q" alwaysOn />,
+  <QuickFilter source="member" label="Член ГСК" defaultValue={1} />,
+  <QuickFilter source="dolg" label="Должник" defaultValue={1} />,
 ];
 
 const BulkActionButtons = props => (
@@ -16,8 +29,8 @@ export const UserList = ({ permissions, ...props }) => (
   <List {...props} bulkActionButtons={permissions === 'admin' && <BulkActionButtons />} sort={{ field: 'name', order: 'ASC' }} filters={postFilters}>
     <Datagrid>
       <TextField source="name" label="Ф.И.О" />
-      <TextField source="member" label="Член ГСК с" sortable={false} />
-      <TextField source="dolg" label="Сумма долга" sortable={false} />
+      <TextField source="member" label="Член ГСК с" />
+      <TextField source="dolg" label="Сумма долга" />
       <ShowButton label="" />
       {permissions === 'admin' &&
       <EditButton label="" />}
