@@ -111,7 +111,6 @@ const getList = async ({ supabase, resources, resource, params }) => {
         .range(rangeFrom, rangeTo);
 
     if (Object.keys(filter).length > 0) {
-        console.log(Object.entries(filter));
         query.or(
             Object.entries(filter).map(field => field[1] > 0 ? `${field[0]}.eq.${field[1]}` : `${field[0]}.gt.${field[1]}`).join(',')
         );

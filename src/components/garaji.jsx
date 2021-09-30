@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import { ReferenceInput, SearchInput, BulkDeleteButton, Datagrid, ReferenceField, AutocompleteInput, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton } from "react-admin";
+import { ReferenceInput, BulkDeleteButton, Datagrid, ReferenceField, AutocompleteInput, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton } from "react-admin";
 
 const GarajFilter = (props) => (
   <Filter {...props}>
@@ -21,9 +21,8 @@ export const GarajList = ({ permissions, ...props }) => (
       </ReferenceField>
       <TextField source="number" label="Номер" />
       <TextField source="square" label="Площадь" />
-      <ShowButton label="" />
-      {permissions === 'admin' &&
-        <EditButton label="" />}
+      {permissions === 'admin' && <ShowButton label="" />}
+      {permissions === 'admin' && <EditButton label="" />}
     </Datagrid>
   </List>
 );

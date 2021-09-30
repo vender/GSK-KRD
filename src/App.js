@@ -28,9 +28,9 @@ const fetchResources = permissions => {
     ];
     
     const userResources = [
-        <Resource name="users" options={{ label: 'Владельцы' }} icon={UserIcon} list={UserList} show={UserShow} />,
-        <Resource name="garaji" options={{ label: 'Гаражи' }} icon={HomeIcon} list={GarajList} show={GarajShow} />,
-        <Resource name="docks" options={{ label: 'Документы' }} icon={DescriptionIcon} list={DockList} show={DockShow} />
+        <Resource name="users" options={{ label: 'Владельцы' }} icon={UserIcon} list={UserList} />,
+        <Resource name="garaji" options={{ label: 'Гаражи' }} icon={HomeIcon} list={GarajList} />,
+        <Resource name="docks" options={{ label: 'Документы' }} icon={DescriptionIcon} list={DockList} />
     ];
     return permissions === 'admin' ? adminResources : userResources;
     

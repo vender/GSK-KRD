@@ -31,9 +31,8 @@ export const UserList = ({ permissions, ...props }) => (
       <TextField source="name" label="Ф.И.О" />
       <TextField source="member" label="Член ГСК с" />
       <TextField source="dolg" label="Сумма долга" />
-      <ShowButton label="" />
-      {permissions === 'admin' &&
-      <EditButton label="" />}
+      {permissions === 'admin' && <ShowButton label="" />}
+      {permissions === 'admin' && <EditButton label="" />}
     </Datagrid>
   </List>
 );

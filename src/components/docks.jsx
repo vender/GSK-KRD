@@ -1,11 +1,7 @@
 import React, {Fragment} from "react";
-import { Datagrid, FileInput, BulkDeleteButton, UrlField, FileField, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton } from "react-admin";
-
-const DockFilter = (props) => (
-  <Filter {...props}>
-    <TextInput label="Поиск по номеру" source="number" alwaysOn />
-  </Filter>
-);
+import { Datagrid, FileInput, BulkDeleteButton, UrlField, FileField, List, Show, Create, Edit, SimpleShowLayout, SimpleForm, TextField, TextInput } from "react-admin";
+import Button from '@material-ui/core/Button';
+import SaveIcon from '@material-ui/icons/Save';
 
 const BulkActionButtons = props => (
   <Fragment>
@@ -13,16 +9,25 @@ const BulkActionButtons = props => (
   </Fragment>
 );
 
-export const DockList = ({ permissions, ...props }) => (
-  <List {...props} bulkActionButtons={permissions === 'admin' && <BulkActionButtons />} filters={<DockFilter />}>
-    <Datagrid>
-      <TextField source="name" label="Название" />
-      <ShowButton label="" />
-      {permissions === 'admin' &&
-        <EditButton label="" />}
-    </Datagrid>
-  </List>
-);
+const DownloadButton = props => {
+  return (
+    <Fragment>
+      <Button variant="contained" href={props.record.fullurl} color="primary" size="small" startIcon={<SaveIcon />} > Скачать </Button>
+    </Fragment>
+)};
+
+
+export const DockList = ({ permissions, ...props }) => {
+  // console.log(linkToRecord(props.basePath || `/${props.resource}`, record.id));
+  return (
+    <List {...props} bulkActionButtons={permissions === 'admin' && <BulkActionButtons />} exporter={false}>
+      <Datagrid>
+        <TextField source="name" label="Название" />
+        <DownloadButton />
+      </Datagrid>
+    </List>
+  )
+};
 
 export const DockShow = (props) => (
   <Show {...props}>
