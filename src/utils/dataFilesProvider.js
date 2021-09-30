@@ -61,12 +61,6 @@ const dataFilesProvider = {
         }
         return { data: records?.map(record => record.id) };
     },
-    // getMembers: async () => {
-    //     const { data, error } = await supabase
-    //     .from('cities')
-    //     .select('name, country_id')
-    //     .not('name', 'eq', 'Paris')
-    // }
 };
 
 const uploadFile = async (file) => {
@@ -116,8 +110,11 @@ const getList = async ({ supabase, resources, resource, params }) => {
         .order(sort.field, { ascending: sort.order === 'ASC' })
         .range(rangeFrom, rangeTo);
 
-    if (Object.keys(filter)[0]) {
-        query.gt(Object.keys(filter)[0], 0)
+    if (Object.keys(filter).length > 0) {
+        console.log(Object.entries(filter));
+        query.or(
+            Object.entries(filter).map(field => field[1] > 0 ? `${field[0]}.eq.${field[1]}` : `${field[0]}.gt.${field[1]}`).join(',')
+        );
     } else {
         query.match(filter)
     }
@@ -127,7 +124,7 @@ const getList = async ({ supabase, resources, resource, params }) => {
             ? resourceOptions
             : resourceOptions.fullTextSearchFields;
 
-        query = query.or(
+        query.or(
             fullTextSearchFields.map(field => `${field}.ilike.%${q}%`).join(',')
         );
     }

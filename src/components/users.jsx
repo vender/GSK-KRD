@@ -13,10 +13,10 @@ const QuickFilter = ({ label }) => {
   return <Chip className={classes.chip} label={label} />;
 };
 
-const postFilters = [
+const userFilters = [
   <SearchInput source="q" alwaysOn />,
-  <QuickFilter source="member" label="Член ГСК" defaultValue={1} />,
-  <QuickFilter source="dolg" label="Должник" defaultValue={1} />,
+  <QuickFilter source="member" label="Член ГСК" defaultValue={0} />,
+  <QuickFilter source="dolg" label="Должник" defaultValue={0} />,
 ];
 
 const BulkActionButtons = props => (
@@ -26,7 +26,7 @@ const BulkActionButtons = props => (
 );
 
 export const UserList = ({ permissions, ...props }) => (
-  <List {...props} bulkActionButtons={permissions === 'admin' && <BulkActionButtons />} sort={{ field: 'name', order: 'ASC' }} filters={postFilters}>
+  <List {...props} bulkActionButtons={permissions === 'admin' && <BulkActionButtons />} sort={{ field: 'name', order: 'ASC' }} filters={userFilters}>
     <Datagrid>
       <TextField source="name" label="Ф.И.О" />
       <TextField source="member" label="Член ГСК с" />

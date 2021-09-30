@@ -6,7 +6,10 @@ export const resources = {
         fields: ['id', 'name', 'phone', 'adress', 'dolya', 'data', 'boxnum', 'moneydate', 'member', 'dolg', 'about'],
         fullTextSearchFields: ['name', 'id'],
     },
-    garaji: ['id', 'number', 'square', 'user', 'created_at', 'updated_at'],
+    garaji: { 
+        fields: ['id', 'createdby', 'number', 'square', 'user', 'updatedby', 'created_at', 'updated_at'],
+        fullTextSearchFields: ['number'],
+    },
     docks: ['id', 'files', 'src', 'name', 'fullurl', 'created_at', 'updated_at'],
 }
 

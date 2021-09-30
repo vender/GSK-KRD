@@ -1,5 +1,5 @@
 import React, {Fragment} from "react";
-import { ReferenceInput, BulkDeleteButton, Datagrid, ReferenceField, AutocompleteInput, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton } from "react-admin";
+import { ReferenceInput, SearchInput, BulkDeleteButton, Datagrid, ReferenceField, AutocompleteInput, List, Show, Create, Edit, Filter, SimpleShowLayout, SimpleForm, TextField, TextInput, ShowButton, EditButton } from "react-admin";
 
 const GarajFilter = (props) => (
   <Filter {...props}>

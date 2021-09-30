@@ -53,7 +53,7 @@ const Dashboard = () => {
             return accumulator + a.dolg;
         }
     }
-    console.log(summadolga);
+
     return(
     <Container maxWidth="lg">
         <Grid container spacing={3}>
