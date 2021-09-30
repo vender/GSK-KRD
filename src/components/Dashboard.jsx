@@ -40,12 +40,12 @@ const Dashboard = () => {
     const { total:member } = useQueryWithStore({ 
         type: 'getList',
         resource: 'users',
-        payload: { pagination: { page: 1, perPage: 1 }, sort: { field: 'member', order: 'ASC' }, filter: {q:'', member: 1} }
+        payload: { pagination: { page: 1, perPage: 1 }, sort: { field: 'member', order: 'ASC' }, filter: {q:'', member: 0} }
     });
     const { data:dolgSum, total:dolgi } = useQueryWithStore({ 
         type: 'getList',
         resource: 'users',
-        payload: { pagination: { page: 1, perPage: 200 }, sort: { field: 'dolg', order: 'ASC' }, filter: {q:'', dolg: 1} }
+        payload: { pagination: { page: 1, perPage: 200 }, sort: { field: 'dolg', order: 'ASC' }, filter: {q:'', dolg: 0} }
     });
     if (dolgSum) {
         summadolga = dolgSum.reduce(add,0);
