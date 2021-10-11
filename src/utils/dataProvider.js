@@ -3,7 +3,7 @@ import { supabase } from './supabase';
 
 export const resources = {
     users: {
-        fields: ['id', 'name', 'phone', 'adress', 'dolya', 'data', 'boxnum', 'moneydate', 'member', 'dolg', 'about'],
+        fields: ['id', 'name', 'phone', 'adress', 'dolya', 'data', 'boxnum', 'moneydate', 'member', 'dolg', 'about', 'email', 'role'],
         fullTextSearchFields: ['name', 'id'],
     },
     garaji: { 

@@ -61,6 +61,29 @@ const dataFilesProvider = {
         }
         return { data: records?.map(record => record.id) };
     },
+    getUserProfile(params) {
+        const storedProfile = localStorage.getItem("profile");
+    
+        if (storedProfile) {
+            return Promise.resolve({
+                data: JSON.parse(storedProfile),
+            });
+        }
+    
+        // No profile yet, return a default one
+        return Promise.resolve({
+            data: {
+              // As we are only storing this information in the localstorage, we don't really care about this id
+              id: 'unique-id',
+              fullName: "",
+              avatar: ""
+            },
+        });
+      },
+      updateUserProfile(params) {
+        localStorage.setItem("profile", JSON.stringify({ id: 'unique-id', ...params.data }));
+        return Promise.resolve({ data: params.data });
+      }
 };
 
 const uploadFile = async (file) => {
@@ -109,6 +132,8 @@ const getList = async ({ supabase, resources, resource, params }) => {
         .select(fields.join(', '), { count: 'exact' })
         .order(sort.field, { ascending: sort.order === 'ASC' })
         .range(rangeFrom, rangeTo);
+
+    if(resource === 'users') query.neq('role', 'admin')
 
     if (Object.keys(filter).length > 0) {
         query.or(

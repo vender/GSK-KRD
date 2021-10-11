@@ -6,7 +6,7 @@ const authDataPermisions = {
     async getPermissions() {
         const curentUser = supabase.auth.user();
         let { data: profiles, error } = await supabase
-        .from('profiles')
+        .from('users')
         .select('role, email')
         .match({email: curentUser.email})
         .single()

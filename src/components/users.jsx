@@ -42,6 +42,7 @@ export const UserShow = (props) => (
     <SimpleShowLayout>
       <TextField source="name" label="Ф.И.О" />
       <TextField source="phone" label="Номер телефона" />
+      <TextField source="email" label="Электронная почта" />
       <TextField source="adress" label="Адрес регистрации по месту жительства (пребывания)" />
       <TextField source="dolya" label="Доля земельного участка" />
       <TextField source="data" label="Дата и номер регистрации права собственности" />
@@ -59,6 +60,7 @@ export const UserCreate = (props) => (
     <SimpleForm>
       <TextInput source="name" fullWidth={true} label="Ф.И.О" />
       <TextInput source="phone" label="Номер телефона" />
+      <TextInput source="email" label="Электронная почта" />
       <TextInput source="adress" fullWidth={true} label="Адрес регистрации по месту жительства (пребывания)" />
       <TextInput source="dolya" label="Доля земельного участка" />
       <TextInput source="data" fullWidth={true} label="Дата и номер регистрации права собственности" />
@@ -76,6 +78,7 @@ export const UserEdit = (props) => (
     <SimpleForm>
       <TextInput source="name" fullWidth={true} label="Ф.И.О" />
       <TextInput source="phone" label="Номер телефона" />
+      <TextInput source="email" label="Электронная почта" />
       <TextInput source="adress" fullWidth={true} label="Адрес регистрации по месту жительства (пребывания)" />
       <TextInput source="dolya" label="Доля земельного участка" />
       <TextInput source="data" fullWidth={true} label="Дата и номер регистрации права собственности" />

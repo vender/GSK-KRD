@@ -5,8 +5,8 @@ export const authProvider = supabaseAuthProvider(supabase, {
     getIdentity: async (user) => {
         
         const { data, error } = await supabase
-            .from('profiles')
-            .select('id, email, fio')
+            .from('users')
+            .select('*')
             .match({ email: user.email })
             .single();
 
@@ -15,8 +15,8 @@ export const authProvider = supabaseAuthProvider(supabase, {
         }
 
         return {
-            id: data.id,
-            fullName: `${data.fio}`
-        };
+            ...data,
+            fullName: data.name
+        }
     }
 });
