@@ -93,7 +93,7 @@ const Dashboard = () => {
                         <Typography variant="h5" gutterBottom>
                             Членов ГСК - {member}
                         </Typography>
-                        <Button variant="contained" href='#/users?displayedFilters=%7B"member"%3Atrue%7D&filter=%7B"member"%3A1%7D&order=ASC&page=1&perPage=10&sort=dolg' color="primary">Открыть</Button>
+                        <Button variant="contained" href='#/users?displayedFilters=%7B"member"%3Atrue%7D&filter=%7B"member"%3A0%7D&order=ASC&page=1&perPage=10&sort=name' color="primary">Открыть</Button>
                     </CardContent>
                 </Card>
             </Grid>
@@ -103,7 +103,7 @@ const Dashboard = () => {
                         <Typography variant="h5" gutterBottom>
                             Должников - {dolgi}
                         </Typography>
-                        <Button variant="contained" href='#/users?displayedFilters=%7B"dolg"%3Atrue%7D&filter=%7B"dolg"%3A1%7D&order=ASC&page=1&perPage=10&sort=dolg' color="primary">Открыть</Button>
+                        <Button variant="contained" href='#/users?displayedFilters=%7B"dolg"%3Atrue%7D&filter=%7B"dolg"%3A0%7D&order=ASC&page=1&perPage=10&sort=name' color="primary">Открыть</Button>
                     </CardContent>
                 </Card>
             </Grid>
