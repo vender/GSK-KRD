@@ -11,6 +11,9 @@ export const resources = {
         fullTextSearchFields: ['number'],
     },
     docks: ['id', 'files', 'src', 'name', 'fullurl', 'created_at', 'updated_at'],
+    polls: ['id', 'question', 'answers', 'created_at'],
+    pollresult: ['id', 'user_id', 'poll_id', 'answer', 'created_at'],
+
 }
 
 export const dataProvider = supabaseDataProvider(supabase, resources);

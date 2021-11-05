@@ -4,18 +4,21 @@ import { supabase } from './supabase';
 const authDataPermisions = {
     ...authProvider,
     async getPermissions() {
-        const curentUser = supabase.auth.user();
-        let { data: profiles, error } = await supabase
-        .from('users')
-        .select('role, email')
-        .match({email: curentUser.email})
-        .single()
-        // console.log(profiles.role);
-        if(error) {
-            throw error
+        try {
+            const curentUser = supabase.auth.user();
+            let { data: profiles, error } = await supabase
+            .from('users')
+            .select('role, email')
+            .match({email: curentUser.email})
+            .single()
+            if(error) {
+                throw error
+            }
+            if(profiles) return profiles.role
+        } catch (e) {
+            console.log('HandleGetPermission: no user is logged in or tokenResult error');
+            return Promise.resolve('authenticated');
         }
-        if(profiles) return profiles.role
-        return 'authenticated';
     }
 };
 

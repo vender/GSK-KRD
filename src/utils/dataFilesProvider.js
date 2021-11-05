@@ -136,11 +136,13 @@ const getList = async ({ supabase, resources, resource, params }) => {
     if(resource === 'users') query.neq('role', 'admin')
 
     if (Object.keys(filter).length > 0) {
-        query.or(
-            Object.entries(filter).map(field => field[1] > 0 ? `${field[0]}.eq.${field[1]}` : `${field[0]}.gt.${field[1]}`).join(',')
-        );
-    } else {
-        query.match(filter)
+        if(resource === 'users') {
+            query.or(
+                Object.entries(filter).map(field => field[1] > 0 ? `${field[0]}.eq.${field[1]}` : `${field[0]}.gt.${field[1]}`).join(',')
+            );
+        } else {
+            query.match(filter)
+        }
     }
 
     if (q) {

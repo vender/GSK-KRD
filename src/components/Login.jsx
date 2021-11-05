@@ -41,7 +41,7 @@ export default function SignIn() {
   const submit = e => {
     e.preventDefault();
     login({ email, password }).catch(() =>
-        notify('Invalid email or password')
+        notify('Не верный логин или пароль.')
     );
   };
 
@@ -96,7 +96,7 @@ export default function SignIn() {
               </Link>
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="#/register" variant="body2">
                 {"Регистрация"}
               </Link>
             </Grid>
